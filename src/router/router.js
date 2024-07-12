@@ -3,7 +3,7 @@ import { backToHome } from "../../helper/utils.js"
 export default class Router {
     constructor(routes) {
         this.routes = routes
-        this.app = document.querySelector(".app")
+        this.app = document.querySelector("body")
     }
 
     init() {

@@ -159,7 +159,8 @@ form .signup-link a:hover {
   display: flex;
   justify-content: space-between;
   box-sizing: border-box;
-  border-bottom: 0.6mm solid rgba(255, 255, 255, 0.3);
+  /* border-bottom: 0.6mm solid rgba(255, 255, 255, 0.3); */
+  border-bottom: 0.6mm solid #16a085;
   padding: 15px 20px;
   width: 100%;
   height: fit-content;
@@ -219,7 +220,7 @@ main::-webkit-scrollbar-thumb {
 .sidebar {
   width: 300px;
   height: 100vh;
-  border-right: 0.6mm solid rgba(255, 255, 255, 0.3);
+  border-right: 0.6mm solid #16a085;
 }
 
 .user {
@@ -245,17 +246,146 @@ main::-webkit-scrollbar-thumb {
 .content {
   width: 100vw;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 33px 33px;
+}
+
+.no-graph {
+  width: 100%;
+  height: 40%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.container-section {
+  width: 50vmin;
+  height: 28vmin;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 1em 0;
+  position: relative;
+  font-size: 16px;
+  border-radius: 0.5em;
+  background-color: var(--container-background);
+  border-bottom: 10px solid #16a085;
+}
+
+i {
+  color: #16a085;
+  font-size: 2.5em;
+  text-align: center;
+}
+
+span.num {
+  color: #ffffff;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  column-gap: 5px;
-  padding: 2px 2px;
+  place-items: center;
+  font-weight: 600;
+  font-size: 3em;
+}
+
+span.text {
+  color: #e0e0e0;
+  font-size: 1em;
+  text-align: center;
+  pad: 0.7em 0;
+  font-weight: 400;
+  line-height: 0;
+}
+
+.subject {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.progressBar {
+  width: 90%;
+  height: 7px;
+  border-radius: 10px;
+  background: rgba(0,0,0,0.5);
+
+}
+
+.infos {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.percentage {
+  height: 7px;
+  border-radius: 10px;
+  background: #16a085;
+  transition: 3s all;
+  animation-duration: 3s;
+  animation-name: animationProgress ;
+}
+
+
+
+@keyframes animationProgress {
+  from {
+      width: 0;
+  }
 }
 
 .graph {
-  border: 0.6mm solid rgba(255, 255, 255, 0.3);
-  height: 400px;
+  width: 100%;
+  height: 60%;
 }
 
+@media screen and (max-width: 1700px) {
+  .container-section {
+    height: 27vmin;
+    width: 40vmin;
+    font-size: 12px;
+  }
+}
+
+
+@media screen and (max-width: 1500px) {
+  .container-section {
+    height: 27vmin;
+    width: 30vmin;
+    font-size: 12px;
+  }
+}
+
+
+@media screen and (max-width: 1350px) {
+  .container-section {
+    height: 27vmin;
+    width: 27vmin;
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .content{
+    height: auto;
+    overflow-y: auto;
+  }
+
+  .no-graph {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+  }
+
+  .container-section {
+    height: 40vmin;
+    width: 60vmin;
+    font-size: 16px;
+    margin-bottom: 30px;
+  }
+}
 
 
 @media screen and (max-width: 1000px) {
@@ -263,13 +393,13 @@ main::-webkit-scrollbar-thumb {
     font-size: 12px;
   }
 
-  .content {
-    width: 100vw;
-    display: grid;
-    grid-template-columns: 1fr;
-    row-gap: 5px;
-    padding: 2px 2px;
+  .container-section {
+    height: 40vmin;
+    width: 60vmin;
+    font-size: 16px;
+    margin-bottom: 30px;
   }
+
 }
 
 @media screen and (max-width: 700px) {
@@ -284,6 +414,25 @@ main::-webkit-scrollbar-thumb {
     border-bottom: 0.6mm solid rgba(255, 255, 255, 0.3);
   }
 
+
+    .container-section {
+      height: 35vmin;
+      width: 40vmin;
+      font-size: 16px;
+    }
+
 }
 
-@media screen and (max-width: 450px) {}
+@media screen and (max-width: 450px) {
+  .container-section {
+    height: 30vmin;
+    width: 50vmin;
+    font-size: 8px;
+    margin-bottom: 10px;
+  }
+
+  span.num {
+    font-size: 0.5rem;
+  }
+
+}

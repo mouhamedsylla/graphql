@@ -1,18 +1,18 @@
 import Page from "./page.js";
-import { session_expire } from "../../helper/utils.js"
+import { session_expire } from "../../helper/utils.js";
 
 export default class Login extends Page {
     constructor() {
         super()
-        this.setTitle("Sign In")
         this.credentials = {}
     }
 
     bindInputs() {
-        const form = document.getElementById("log__in")
+        const form = document.getElementById("log__in")  
         form.addEventListener('input', (e) => {
             if (e.target.classList.contains('login__input')) {
-                this.credentials[e.target.id] = e.target.value
+                this.credentials[e.target.name] = e.target.value
+
             }
         })
 
@@ -30,31 +30,44 @@ export default class Login extends Page {
             const response = await fetch(`${DOMAIN}/api/auth/signin`, {
                 method: "POST",
                 headers: new Headers({
-                    'Authorization': 'Basic ' + btoa(this.credentials.username + ":" + this.credentials.password),
+                    'Authorization': 'Basic ' + btoa(this.credentials.identifier + ":" + this.credentials.password),
                     'Content-Type': 'application/json'
                 })
             })
 
-            const rp = await response.json()
-            if (session_expire()) {
+            if (response.ok) {
+                document.cookie = await response.json()
                 window.location.href = "/home"
             }
         } catch (error) {
-            console.error("Invalid Credentials")
+            console.error('Promise rejected:', error)
         }
     }
 
 
     async getHTML() {
+        this.setTitle("Sign In")
         return `
-        <div class="login">
-            <h1>Login</h1>
-            <form id="log__in">
-                <input type="text" id="username" placeholder="Username" class="login__input" required>
-                <input type="password" id="password" placeholder="Password" class="login__input" required>
-                <div id="signin__button">Sign In</div>
-            </form>
-        </div>
+            <div class="container">
+                <div class="wrapper">
+                <div class="title"><span>Signin</span></div>
+                <form action="#" id="log__in">
+                    <div class="row">
+                    <i class="fas fa-user"></i>
+                    <input type="text" name="identifier" placeholder="Email or Username" required class="login__input">
+                    </div>
+                    <div class="row">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" name="password" placeholder="Password" required class="login__input">
+                    </div>
+                    <div class="pass"><a href="#">Forgot password?</a></div>
+                    <div class="row button">
+                    <input type="button" value="Login" id="signin__button">
+                    </div>
+                    <div class="signup-link">Not a member? <a href="#">Signup now</a></div>
+                </form>
+                </div>
+            </div>
         `
     }
 }

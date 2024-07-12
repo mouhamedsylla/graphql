@@ -3,10 +3,10 @@ import Page from "./page.js"
 export default class Error extends Page {
     constructor() {
         super()
-        this.setTitle("Error")
     }
 
     async getHTML() {
+        this.setTitle("Error")
         return `
         <div class="error">
             <h1>Error</h1>

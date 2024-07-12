@@ -3,8 +3,11 @@ export {
     parseJWT,
     backToHome,
     session_expire, 
-    GraphiQL_Request
+    GraphiQL_Request,
+    skills
 }
+
+const skills = ["skill_go", "skill_js", "skill_rust"]
 
 
 function parseJWT(token) {
@@ -34,7 +37,7 @@ function session_expire() {
 }
 
 function logout() {
-    document.cookie = 'forum=; Max-Age=0; path=/;'
+    document.cookie = null
     window.location.href = "/login"
 }
 
