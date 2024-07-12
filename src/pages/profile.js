@@ -1,7 +1,7 @@
 import Page from "./page.js"
 import query from "../query.js"
 import StatistiqueSection from "../components/statistique_section.js"
-import { session_expire, GraphiQL_Request, logout, skills } from "../../helper/utils.js"    
+import { session_expire, GraphiQL_Request, logout } from "../helper/utils.js"    
 
 export default class Profile extends Page {
     constructor() {

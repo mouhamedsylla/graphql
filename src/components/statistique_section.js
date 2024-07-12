@@ -1,4 +1,4 @@
-import { GraphiQL_Request, skills } from "../../helper/utils.js"
+import { GraphiQL_Request, skills } from "../helper/utils.js"
 import query from "../query.js"
 
 export default class StatistiqueSection {

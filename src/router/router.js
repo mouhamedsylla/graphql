@@ -1,4 +1,4 @@
-import { backToHome } from "../../helper/utils.js"
+import { backToHome } from "../helper/utils.js"
 
 export default class Router {
     constructor(routes) {
