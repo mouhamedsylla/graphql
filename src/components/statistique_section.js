@@ -5,6 +5,7 @@ export default class StatistiqueSection {
     constructor() {
         this.xp = 0
         this.technologies = []
+        this.projects = []
     }
 
     async getStats(token) {
@@ -21,7 +22,13 @@ export default class StatistiqueSection {
             skills ?
             this.technologies.push({amount: skills.amount, skill: skill}) :
             this.technologies.push({amount: 0, skill: skill})
-        })    
+        })
+        
+        // Getting the user's working projects
+        const projects = (await GraphiQL_Request(query.WORKING_PROJECTS, token)).data.user[0].groups
+        projects.forEach(project => {
+            this.projects.push({name: project.group.object.name, date: project.group.createdAt})
+        })
     }
 
     async render(token) {
@@ -33,7 +40,7 @@ export default class StatistiqueSection {
         container.innerHTML = `
                             <div class="container-section">
                     <i class="fas fa-star"></i>
-                    <span class="num" data-val="400">${this.xp} KB</span>
+                    <span class="num" data-val="${this.xp}">${this.xp} KB</span>
                     <span class="text">Earned XP</span>
                 </div>
 
@@ -75,8 +82,14 @@ export default class StatistiqueSection {
                 </div>
 
                 <div class="container-section">
-                    
-                </div>
-        `
+                    <div class="status-infos">
+                        <span>status</span>
+                        <div class="status-color  ${this.projects.length > 0 ? "active" : "inactive"}"></div>
+                    </div>
+                    <div class="status-text ${this.projects.length > 0 ? "active" : "inactive"}">
+                        ${this.projects.length > 0 ? "ACTIVE" : "INACTIVE"}
+                    </div>
+                    ${this.projects.length > 0 ? `<div class="work-status">working on  <span class="animate__animated animate__bounce">${this.projects[0].name}</span></div>` : "" }
+                </div>`
     }
 }

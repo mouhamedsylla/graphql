@@ -57,7 +57,21 @@ export default {
             amount
             type
         }
-    }`
+    }`,
+
+    WORKING_PROJECTS:
+    `query {
+	        user {
+                groups(where: {group: {status: {_eq: working}}}) {
+                    group {
+                        createdAt
+                        object {
+                            name
+                        }
+                    }
+                }
+            }
+        }`
 }
 
 /*
@@ -72,3 +86,16 @@ query {
 }
 
 */ 
+
+
+/*
+query getting level
+
+query {
+	transaction(where: {type: {_eq: "level"} _and: {path: {_iregex: "/dakar/div-01"}}} distinct_on: type order_by: [{type: asc}, {amount: desc}]) {
+		amount
+    path
+		
+  }
+}
+*/
