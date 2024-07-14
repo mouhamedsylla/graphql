@@ -38,7 +38,7 @@ export default class Profile extends Page {
         return `
                 <div class="center">
                     <class class="head">
-                        <div class="logo"><img class="icon-graphql" src="./public/graphql-icon.svg" alt="">GRAPHQL</div>
+                        <div class="logo"><img class="icon-graphql" src="graphql-icon.svg" alt="">GRAPHQL</div>
                         <button type="button" class="btn">Logout <span class="material-icons-round"></span></button>
                     </class>
                 </div>
@@ -46,7 +46,7 @@ export default class Profile extends Page {
                     <div class="sidebar">
                         <div class="user">
                             <div class="image-container">
-                                <img id="user-image" src="./public/profile.png" alt="">
+                                <img id="user-image" src="profile.png" alt="">
                             </div>
                             <div class="user-info">
                                 <h3>${this.user.firstName} ${this.user.lastName}</h3>
