@@ -41,8 +41,10 @@ export default {
                     }    
                 } 
             }) {
-                path
                 amount
+                object {
+                    name
+                }
             }
         }
     }

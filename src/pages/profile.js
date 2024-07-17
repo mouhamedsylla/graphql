@@ -1,6 +1,7 @@
 import Page from "./page.js"
 import query from "../query.js"
 import StatistiqueSection from "../components/statistique_section.js"
+import GraphSection from "../components/graph_section.js"
 import { session_expire, GraphiQL_Request, logout, numLoad } from "../helper/utils.js"    
 
 export default class Profile extends Page {
@@ -9,6 +10,7 @@ export default class Profile extends Page {
         this.token = null
         this.user = {}
         this.statistics = new StatistiqueSection()
+        this.graphics = new GraphSection()
     }
 
     async initUser() {
@@ -30,6 +32,8 @@ export default class Profile extends Page {
 
         await this.statistics.render(this.token)
         numLoad()
+
+        await this.graphics.render(this.token)
     }
 
     async getHTML() {

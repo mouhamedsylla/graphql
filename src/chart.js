@@ -1,14 +1,15 @@
-// Configuration du graphique avec CSS
+
+
 const margin = {
     top: 20,
     right: 30,
     bottom: 40,
     left: 40
-};
+}
 
 
 // Fonction pour créer un graphique en barres
-function createBarChart(data) {
+export function createBarChart(data) {
     d3.select("#graph1").selectAll("*").remove();
 
     // Définir les dimensions du graphique
@@ -68,7 +69,7 @@ function createBarChart(data) {
             tooltip.transition()
                 .duration(200)
                 .style("opacity", .9)
-            tooltip.html("Nom: " + d.name + "<br>Valeur: " + d.value)
+            tooltip.html(d.name + "<br>" + d.value + " kb") 
                 .style("left", (event.pageX + 5) + "px")
                 .style("top", (event.pageY - 28) + "px")
         })
@@ -78,57 +79,3 @@ function createBarChart(data) {
                 .style("opacity", 0)
         })
 }
-
-// Données personnalisables
-const data = [
-    {name: "A", value: 30},
-    {name: "B", value: 80},
-    {name: "C", value: 45},
-    {name: "D", value: 60},
-    {name: "E", value: 20},
-    {name: "F", value: 90},
-    {name: "G", value: 55},
-    {name: "H", value: 75},
-    {name: "I", value: 40},
-    {name: "J", value: 65},
-    {name: "K", value: 25},
-    {name: "L", value: 85},
-    {name: "M", value: 50},
-    {name: "N", value: 70},
-];
-
-// Créer le graphique en barres
-createBarChart(data);
-
-window.addEventListener("resize", () => {
-    d3.select("#graph1").selectAll("*").remove();
-    createBarChart(data);
-    window.location.reload();
-});
-
-
-
-var options = {
-    series: [40, 60],
-    chart: {
-      width: 600,
-      type: 'pie',
-    },
-    labels: ['PASS', 'FAIL'],
-    colors: ['#16a085', '#333'], // Couleurs personnalisées
-    responsive: [{
-      breakpoint: 480,
-      options: {
-        chart: {
-          width: 200
-        },
-        legend: {
-          position: 'bottom'
-        }
-      }
-    }]
-  };
-
-  var chart = new ApexCharts(document.querySelector("#graph2"), options);
-  chart.render();
-

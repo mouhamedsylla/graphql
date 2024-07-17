@@ -12,7 +12,7 @@ const skills = ["skill_go", "skill_js", "skill_rust"]
 
 function numLoad() {
     let valueDisplays = document.querySelectorAll(".num");
-    let interval = 4000;
+    let interval = 6000;
     valueDisplays.forEach((valueDisplay) => {
       let startValue = 0;
       let endValue = parseInt(valueDisplay.getAttribute("data-val"));
