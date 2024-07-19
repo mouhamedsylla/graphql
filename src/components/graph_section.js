@@ -1,10 +1,11 @@
 import query from "../query.js"
-import { createBarChart } from "../chart.js"
-import { GraphiQL_Request } from "../helper/utils.js"
+import { createBarChart, createPieChart } from "../chart.js"
+import { GraphiQL_Request, gettingPercentage } from "../helper/utils.js"
 
 export default class GraphSection {
     constructor() {
         this.barGraph = []
+        this.grades = []
     }
 
     async getStats(token) {
@@ -14,7 +15,12 @@ export default class GraphSection {
             transaction.amount = (transaction.amount / 1000).toFixed(0)
             this.barGraph.push({name: transaction.object.name, value: parseInt(transaction.amount)})
         })
-        console.log(this.barGraph)
+
+        // Getting percentage pass or fail projects
+        const transaction_grades = (await GraphiQL_Request(query.USER_TRANSACTIONS, token)).data.user[0].transactions
+        transaction_grades.forEach(transaction => {
+            this.grades.push({name: transaction.object.name, value: transaction.progress.grade})
+        })
     }
 
     async render(token) {
@@ -31,5 +37,6 @@ export default class GraphSection {
             </div>
        `
         createBarChart(this.barGraph)
+        createPieChart(gettingPercentage(this.grades))
     }
 }

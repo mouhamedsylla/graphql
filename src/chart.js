@@ -1,5 +1,3 @@
-
-
 const margin = {
     top: 20,
     right: 30,
@@ -79,3 +77,44 @@ export function createBarChart(data) {
                 .style("opacity", 0)
         })
 }
+
+var options_pie_graph = {
+    chart: {
+      width: 600,
+      type: 'pie',
+    },
+    labels: ['PASS', 'FAIL'],
+    colors: ['#16a085', '#999'], // Couleurs personnalisées
+    responsive: [{
+      breakpoint: 750,
+      options: {
+        chart: {
+          width: 400
+        },
+        legend: {
+          position: 'bottom'
+        }
+      }
+    }],
+    legend: {
+        labels: {
+            colors: ['#16a085', '#333'], // Couleurs des labels
+            useSeriesColors: true
+        }
+    },
+    dataLabels: {
+        style: {
+        colors: ['#ffffff', '#ffffff'] // Couleurs des labels
+        }
+    },
+    tooltip: {
+        enabled: false,
+    }
+  };
+
+
+  export function createPieChart(data) {
+    options_pie_graph.series = data
+    var chart = new ApexCharts(document.querySelector("#graph2"), options_pie_graph);
+    chart.render();
+  }

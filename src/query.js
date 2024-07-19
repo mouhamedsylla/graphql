@@ -42,6 +42,9 @@ export default {
                 } 
             }) {
                 amount
+                progress {
+                    grade
+                }
                 object {
                     name
                 }

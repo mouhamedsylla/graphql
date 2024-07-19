@@ -5,7 +5,8 @@ export {
     session_expire, 
     GraphiQL_Request,
     skills,
-    numLoad
+    numLoad,
+    gettingPercentage
 }
 
 const skills = ["skill_go", "skill_js", "skill_rust"]
@@ -25,6 +26,21 @@ function numLoad() {
         }
       }, duration);
     });
+}
+
+function gettingPercentage(grades) {
+    let pass = 0
+    let fail = 0
+    grades.forEach(grade => {
+        if (grade.value > 1) {
+            pass++
+        } else {
+            fail++
+        }
+    })
+    const pass_percentage = Math.round((pass / grades.length) * 100)
+    const fail_percentage = 100 - pass_percentage
+    return [pass_percentage, fail_percentage]
 }
 
 function parseJWT(token) {
