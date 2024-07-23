@@ -58,11 +58,11 @@ export default class Login extends Page {
                     <i class="fas fa-lock"></i>
                     <input type="password" name="password" placeholder="Password" required class="login__input">
                     </div>
-                    <div class="pass"><a href="#">Forgot password?</a></div>
+                    <div class="pass"><a href="https://learn.zone01dakar.sn/">Forgot password?</a></div>
                     <div class="row button">
                     <input type="button" value="Login" id="signin__button">
                     </div>
-                    <div class="signup-link">Not a member? <a href="#">Signup now</a></div>
+                    <div class="signup-link">Not a member? <a href="https://learn.zone01dakar.sn/">Signup now</a></div>
                 </form>
                 </div>
             </div>
