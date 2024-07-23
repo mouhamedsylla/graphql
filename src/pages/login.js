@@ -43,7 +43,7 @@ export default class Login extends Page {
                 alert_infos(result.error, alert_icons_iframes.failed, parent)
                 setTimeout(() => {
                     parent.removeChild(document.querySelector('.alert'))
-                }, 3000)
+                }, 5000)
             }
         } catch (error) {
             console.error('Promise rejected:', error)
