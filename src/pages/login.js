@@ -1,4 +1,5 @@
 import Page from "./page.js";
+import { alert_infos, alert_icons_iframes } from "../helper/utils.js";
 export default class Login extends Page {
     constructor() {
         super()
@@ -36,6 +37,13 @@ export default class Login extends Page {
             if (response.ok) {
                 document.cookie = await response.json()
                 window.location.href = "/home"
+            } else {
+                const result = await response.json()
+                const parent = document.querySelector('.container')
+                alert_infos(result.error, alert_icons_iframes.failed, parent)
+                setTimeout(() => {
+                    parent.removeChild(document.querySelector('.alert'))
+                }, 3000)
             }
         } catch (error) {
             console.error('Promise rejected:', error)
