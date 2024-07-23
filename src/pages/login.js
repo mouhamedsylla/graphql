@@ -28,7 +28,7 @@ export default class Login extends Page {
             const response = await fetch(`${DOMAIN}/api/auth/signin`, {
                 method: "POST",
                 headers: new Headers({
-                    'Authorization': 'Basic ' + btoa(this.credentials.identifier + ":" + this.credentials.password),
+                    'Authorization': 'Basic ' + btoa(unescape(encodeURIComponent(this.credentials.identifier + ':' + this.credentials.password))),
                     'Content-Type': 'application/json'
                 })
             })

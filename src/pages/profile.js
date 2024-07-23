@@ -19,9 +19,16 @@ export default class Profile extends Page {
             return
         }
 
-        this.token = document.cookie
-        const response = await GraphiQL_Request(query.USER_INFO, this.token)
-        this.user = response.data.user[0]
+        
+        try {
+            this.token = document.cookie
+            const response = await GraphiQL_Request(query.USER_INFO, this.token)
+             this.user = response.data.user[0]
+
+        } catch (error) {
+            logout()
+            console.error('Promise rejected:', error)
+        }
     }
 
     async renderComponents() {
