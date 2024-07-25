@@ -14,4 +14,4 @@ export default class Error extends Page {
         </div>
         `
     }
-}
+}   
